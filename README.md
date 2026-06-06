@@ -1,107 +1,107 @@
-# Die Erde im Wandel: Veränderungen aus dem All
+# Earth in Motion: Visualizing Change from Space
 
-## Anforderungen
+## Requirements
 
-Für den Betrieb dieser Anwendung werden folgende MathWorks‑Toolboxen benötigt:
+This MATLAB application requires the following MathWorks toolboxes:
 
 * **Deep Learning Toolbox**
 * **Computer Vision Toolbox**
 * **Signal Processing Toolbox**
 
-> **Hinweis zur Performance:** Nach jedem Klick auf einen Button kann es – insbesondere auf leistungsschwächeren Rechnern – zu Verzögerungen kommen. Bitte warten Sie einen Moment, auch wenn sich die Oberfläche nicht sofort aktualisiert, da im Hintergrund umfangreiche Berechnungen stattfinden.
+> **Performance note:** After clicking a button, the interface may take a moment to update, especially on slower machines. Please wait briefly while the application performs the required image processing in the background.
 
-## 1. Auswahl der Location
-
-<p align="center">
-  <img src="readmePics/Locations.png" alt="Location-Auswahl" width="900" />
-</p>
-
-Beim Start der App öffnet sich automatisch die **Location‑Auswahl**.
-Hier finden Sie vordefinierte Satelliten‑Standorte und können über **„Location hinzufügen“** eigene Bilderserien importieren.
-Die neu hinzugefügten Bilder werden automatisch ausgerichtet und in die linke Panel-Liste übernommen.
-
-## 2. Hauptansicht
+## 1. Location Selection
 
 <p align="center">
-  <img src="readmePics/UI.png" alt="Hauptansicht" width="900" />
+  <img src="readmePics/Locations.png" alt="Location selection" width="900" />
 </p>
 
-### Linkes Panel: Locations
+When the app starts, the **location selection** window opens automatically.
+It contains predefined satellite image locations and also allows users to import their own image sequences via **"Add location"**.
+Newly added images are automatically aligned and added to the location list in the left panel.
 
-* Liste aller ausgerichteten Locations mit Vorschaubildern.
-* **➕ Location hinzufügen**: Import neuer Bilderserien.
-* **✖ Alignment löschen**: Entfernt die Alignment-Daten und Metadaten.
-* Klick auf einen Eintrag wechselt direkt zur gewählten Location.
-
-### Rechtes Panel: Bildauswahl
-
-* **✔ Ausgerichtete Bilder**: Bilder mit erfolgreichem Alignment.
-* **✖ Nicht verwendete Bilder**: Bilder, die nicht ausgerichtet wurden.
-* Checkboxen zum Ein- und Ausschließen einzelner Bilder.
-* Scrollbare Ansicht zur Auswahl beliebig vieler Bilder (Ausnahme: Highlights und Segmentierung, hier maximal zwei).
-
-### ROI und Zuschnitt
-
-* **ROI Auswahl**: Wählen Sie einen Bereich (Region of Interest), um nur diesen Teil neu auszurichten.
-* **Zuschnitt**: Zeigt nur den gemeinsamen Überlappungsbereich aller ausgewählten Bilder an und stellt danach die Ursprungsansicht wieder her.
-
-## 3. Zeitraffer
+## 2. Main View
 
 <p align="center">
-  <img src="readmePics/Zeitraffer.png" alt="Zeitraffer" width="900" />
+  <img src="readmePics/UI.png" alt="Main view" width="900" />
 </p>
 
-* Standard-Ansicht nach dem Laden einer Location.
-* **Play/Pause**-Button startet oder stoppt die automatische Wiedergabe (\~15 fps).
-* **Erster Slider** (oben): Manuelle Auswahl des aktuellen Bildes in der Sequenz.
-* **Zweiter Slider** (unten, nur im Pause-Modus): Regelt die Transparenz zwischen zwei aufeinanderfolgenden Bildern.
-* **Datum-Anzeige** zeigt aktuellen Index und Datum des Bildes.
+### Left Panel: Locations
 
-## 4. Veränderungs‑Highlights
+* List of all aligned locations with preview images.
+* **Add location**: Imports a new image sequence.
+* **Delete alignment**: Removes alignment data and metadata.
+* Clicking an entry switches directly to the selected location.
+
+### Right Panel: Image Selection
+
+* **Aligned images**: Images that were successfully aligned.
+* **Unused images**: Images that could not be aligned.
+* Checkboxes can be used to include or exclude individual images.
+* Scrollable image selection for any number of images. For Highlights and Segmentation, a maximum of two images can be selected.
+
+### ROI and Crop
+
+* **ROI selection**: Select a region of interest to realign only that part of the image sequence.
+* **Crop**: Shows only the common overlapping area of all selected images and then restores the original view.
+
+## 3. Timelapse
 
 <p align="center">
-  <img src="readmePics/Intensität.png" alt="Veränderung: Intensitätsansicht" width="900" />
-</p>
-<p align="center">
-  <img src="readmePics/Umrandung.png" alt="Veränderung: Umrandungsansicht" width="900" />
+  <img src="readmePics/Zeitraffer.png" alt="Timelapse" width="900" />
 </p>
 
-Hier können Sie Unterschiede zwischen genau zwei Bildern visualisieren:
+* Default view after loading a location.
+* The **Play/Pause** button starts or stops automatic playback at approximately 15 fps.
+* **First slider** at the top: Manually selects the current image in the sequence.
+* **Second slider** at the bottom, available only in pause mode: Controls transparency between two consecutive images.
+* The **date display** shows the current index and image date.
 
-* **Intensitätsmodus**: Farbige Darstellung der Pixelveränderung.
-* **Umrandungsmodus**: Konturen markieren die Übergänge.
-
-Regler:
-
-1. **Unterschiedsstärke** (Slider 1): Schwellenwert für Farb- oder Kontur-Erkennung.
-2. **Fläche** (Slider 2): Minimale zusammenhängende Fläche relativ zur Bildgröße.
-3. **Deckungskraft** (Slider 3, nur im Umrandungsmodus): Transparenz für das Overlay.
-
-## 5. Fortschritts‑Ansicht
+## 4. Change Highlights
 
 <p align="center">
-  <img src="readmePics/Fortschritt.png" alt="Fortschrittsansicht" width="900" />
+  <img src="readmePics/Intensität.png" alt="Change highlights: intensity view" width="900" />
+</p>
+<p align="center">
+  <img src="readmePics/Umrandung.png" alt="Change highlights: contour view" width="900" />
 </p>
 
-* Zeigt sequentiell alle Veränderungen als Kontur-Overlay in einer Achse.
-* **Reverse**-Button (⇆): Tausch der Vergleichsrichtung (Alt→Neu / Neu→Alt) und Anpassung der Basis- und Overlay-Bilder.
-* Regler und Legende entsprechen denen der Highlights-Ansicht.
-* Darstellung der Paare von Bilddaten (z.B. `2020-01-01 → 2021-01-01`).
+This view visualizes differences between exactly two images:
 
-## 6. Segmentierung
+* **Intensity mode**: Displays pixel changes using a colored overlay.
+* **Contour mode**: Marks transition areas with contours.
+
+Controls:
+
+1. **Difference strength** (Slider 1): Threshold for color or contour detection.
+2. **Area** (Slider 2): Minimum connected area relative to the image size.
+3. **Opacity** (Slider 3, contour mode only): Transparency of the overlay.
+
+## 5. Progress View
 
 <p align="center">
-  <img src="readmePics/Segmentation.png" alt="Segmentierungsansicht" width="900" />
+  <img src="readmePics/Fortschritt.png" alt="Progress view" width="900" />
 </p>
 
-* U-Net-Modell segmentiert urbane Landschaft in 5 Klassen:
+* Sequentially displays all detected changes as contour overlays in one axis.
+* **Reverse** button: Switches the comparison direction from old-to-new to new-to-old and adjusts the base and overlay images.
+* Controls and legend follow the same logic as the Highlights view.
+* Displays image date pairs, for example `2020-01-01 -> 2021-01-01`.
 
-  * Wasser, Vegetation, Gebäude, bebaute Fläche, Offenland
-* Anzeige von zwei segmentierten Overlays nebeneinander.
-* Prozentuale Anteile jeder Klasse für beide Zeitpunkte.
-* Differenz-Anzeige der prozentualen Veränderung.
-* Dynamische Legende mit Farbcodes oben links.
+## 6. Segmentation
+
+<p align="center">
+  <img src="readmePics/Segmentation.png" alt="Segmentation view" width="900" />
+</p>
+
+* A U-Net model segments urban landscapes into 5 classes:
+
+  * Water, vegetation, buildings, built-up area, open land
+* Displays two segmented overlays side by side.
+* Shows the percentage share of each class for both points in time.
+* Displays the percentage difference between both images.
+* Dynamic legend with class colors in the top-left corner.
 
 ---
 
-Weitere Informationen und Details zur Bedienung finden Sie in der Dokumentation der einzelnen Views und Funktionen.
+More information about usage and implementation details can be found in the documentation of the individual views and functions.
