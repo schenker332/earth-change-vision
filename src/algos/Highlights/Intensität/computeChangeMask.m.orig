@@ -1,0 +1,56 @@
+<<<<<<< HEAD
+function changeMask = computeChangeMask(img1, img2,  strengthThreshold, areaThreshold) 
+% computeChangeMask - Berechnet binäre Maske der Unterschiede zwischen zwei Bildern
+%
+% Eingaben:
+%   img1, img2     - RGB-Bilder (uint8 oder double)
+%   regionMask     - (optional) logische Maske
+%
+% Ausgabe:
+%   changeMask     - binäre Maske der Veränderung
+% function changeMask = computeChangeMask(img1, img2, regionMask)
+
+
+    if nargin < 4, strengthThreshold = 0; end
+    if nargin < 5, areaThreshold = 0; end
+=======
+function changeMask = computeChangeMask(img1, img2, regionMask, ...
+                                        strengthThreshold, areaThreshold)
+
+    if nargin < 3, regionMask       = [];  end
+    if nargin < 4, strengthThreshold = 0;  end
+    if nargin < 5, areaThreshold     = 0;  end
+>>>>>>> refs/remotes/origin/main
+
+    img1Gray = rgb2gray(im2double(img1));
+    img2Gray = rgb2gray(im2double(img2));
+
+    % ---------- NEU: Gültigkeitsmaske -----------------------------------
+    if isempty(regionMask)
+        % „echte“ Bildpixel ≙ Helligkeit > 0 (Toleranz 0.02)
+        mask1 = any(im2double(img1) > 0.02, 3);
+        mask2 = any(im2double(img2) > 0.02, 3);
+
+<<<<<<< HEAD
+=======
+        % Nur der Schnitt beider Masken zählt
+        regionMask = mask1 & mask2;
+
+        % Ein paar Pixel vom Rand wegnehmen, um Rest-Artefakte zu vermeiden
+        regionMask = imerode(regionMask, strel('diamond',2));
+    end
+    % --------------------------------------------------------------------
+>>>>>>> refs/remotes/origin/main
+
+    diffMap = abs(img1Gray - img2Gray);
+    diffMap = imgaussfilt(diffMap, 1);            % Glättung
+    diffMap(~regionMask) = 0;                     % alles außerhalb ignorieren
+
+    % --- binarisieren wie gehabt ----------------------------------------
+    if strengthThreshold > 0 || areaThreshold > 0
+        changeMask = filterChangeMask_relativeToImageArea( ...
+                         diffMap,strengthThreshold,areaThreshold);
+    else
+        changeMask = imbinarize(diffMap, graythresh(diffMap));
+    end
+end
